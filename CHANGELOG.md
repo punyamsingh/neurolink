@@ -1,3 +1,10 @@
+## [1.11.3](https://github.com/juspay/neurolink/compare/v1.11.2...v1.11.3) (2025-06-22)
+
+
+### Bug Fixes
+
+* resolve MCP external tools returning raw JSON instead of human-readable responses ([921a12b](https://github.com/juspay/neurolink/commit/921a12b5b31ca96bbfe3f1db05001ddb84470e14))
+
 ## [1.11.2](https://github.com/juspay/neurolink/compare/v1.11.1...v1.11.2) (2025-06-22)
 
 
