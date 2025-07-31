@@ -1,3 +1,10 @@
+## [6.2.1](https://github.com/juspay/neurolink/compare/v6.2.0...v6.2.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **logging:** consolidate MCP logging and add debug flag control ([ea0132d](https://github.com/juspay/neurolink/commit/ea0132dd954966cb42238dc3736f6cee9cc7b18d))
+
 # [6.2.0](https://github.com/juspay/neurolink/compare/v6.1.0...v6.2.0) (2025-07-30)
 
 ### Features
