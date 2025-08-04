@@ -1,3 +1,10 @@
+## [7.3.2](https://github.com/juspay/neurolink/compare/v7.3.1...v7.3.2) (2025-08-04)
+
+
+### Bug Fixes
+
+* **docs:** update copyright year and set dark theme as default ([bf1973d](https://github.com/juspay/neurolink/commit/bf1973d40298554c8cab508c109decf81cd9c519))
+
 ## [7.3.1](https://github.com/juspay/neurolink/compare/v7.3.0...v7.3.1) (2025-08-04)
 
 
