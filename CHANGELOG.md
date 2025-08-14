@@ -1,3 +1,9 @@
+## [7.12.0](https://github.com/juspay/neurolink/compare/v7.11.1...v7.12.0) (2025-08-14)
+
+### Features
+
+- **(memory):** Added support for Conversation History ([5cf3650](https://github.com/juspay/neurolink/commit/5cf36507ec12fca525df652c1c15acc8c1c71297))
+
 ## [7.11.1](https://github.com/juspay/neurolink/compare/v7.11.0...v7.11.1) (2025-08-14)
 
 ### Bug Fixes
