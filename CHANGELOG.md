@@ -1,3 +1,9 @@
+## [7.14.4](https://github.com/juspay/neurolink/compare/v7.14.3...v7.14.4) (2025-08-18)
+
+### Bug Fixes
+
+- **(docs):** use pnpm in setup script and correct modelServer run command BZ-43341 ([fcfa465](https://github.com/juspay/neurolink/commit/fcfa465ef5af7656dc066fd5901c738588609d4e))
+
 ## [7.14.3](https://github.com/juspay/neurolink/compare/v7.14.2...v7.14.3) (2025-08-16)
 
 ### Bug Fixes
