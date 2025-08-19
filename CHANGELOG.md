@@ -1,3 +1,9 @@
+## [7.23.0](https://github.com/juspay/neurolink/compare/v7.22.0...v7.23.0) (2025-08-19)
+
+### Features
+
+- **(docs):** modernize api examples ([c77706b](https://github.com/juspay/neurolink/commit/c77706b427c2ea781269c6d0c2dc7ca2511128cb))
+
 ## [7.22.0](https://github.com/juspay/neurolink/compare/v7.21.0...v7.22.0) (2025-08-19)
 
 ### Features
