@@ -1,3 +1,9 @@
+## [7.17.0](https://github.com/juspay/neurolink/compare/v7.16.0...v7.17.0) (2025-08-19)
+
+### Features
+
+- **(proxy):** implement comprehensive enterprise proxy support with testing ([0dd124b](https://github.com/juspay/neurolink/commit/0dd124b75826f4581a608e4d62acc05e827cbc1d))
+
 ## [7.16.0](https://github.com/juspay/neurolink/compare/v7.15.0...v7.16.0) (2025-08-19)
 
 ### Features
