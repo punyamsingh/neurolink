@@ -1,3 +1,9 @@
+## [7.24.0](https://github.com/juspay/neurolink/compare/v7.23.0...v7.24.0) (2025-08-20)
+
+### Features
+
+- **(deploy):** Added a configurable force-rebuild flag for the deploy command. ([e5a81d4](https://github.com/juspay/neurolink/commit/e5a81d4df2ff3dd6a1b81d74beb0bca50015f207))
+
 ## [7.23.0](https://github.com/juspay/neurolink/compare/v7.22.0...v7.23.0) (2025-08-19)
 
 ### Features
