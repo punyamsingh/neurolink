@@ -1,3 +1,9 @@
+## [7.31.0](https://github.com/juspay/neurolink/compare/v7.30.1...v7.31.0) (2025-09-01)
+
+### Features
+
+- **(core):** implement global middleware architecture ([8eb711a](https://github.com/juspay/neurolink/commit/8eb711ae827773c3fbc5339402d6cbee4e0bc8d4))
+
 ## [7.30.1](https://github.com/juspay/neurolink/compare/v7.30.0...v7.30.1) (2025-08-31)
 
 ### Bug Fixes
