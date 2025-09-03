@@ -1,3 +1,9 @@
+## [7.33.0](https://github.com/juspay/neurolink/compare/v7.32.0...v7.33.0) (2025-09-03)
+
+### Features
+
+- **(provider):** refactor generate method to use streamText for improved performance and consistency ([a118300](https://github.com/juspay/neurolink/commit/a11830088376b899725bcb1dc2467cb73f44f5b9))
+
 ## [7.32.0](https://github.com/juspay/neurolink/compare/v7.31.0...v7.32.0) (2025-09-03)
 
 ### Features
