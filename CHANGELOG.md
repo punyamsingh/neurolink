@@ -1,3 +1,9 @@
+## [7.40.1](https://github.com/juspay/neurolink/compare/v7.40.0...v7.40.1) (2025-09-17)
+
+### Bug Fixes
+
+- **(title):** Update system prompt to generate better title ([9d0e5b8](https://github.com/juspay/neurolink/commit/9d0e5b85a11f2cfe67942f7db407193842f8b93f))
+
 ## [7.40.0](https://github.com/juspay/neurolink/compare/v7.39.0...v7.40.0) (2025-09-17)
 
 ### Features
