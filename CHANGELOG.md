@@ -1,3 +1,9 @@
+## [7.43.0](https://github.com/juspay/neurolink/compare/v7.42.0...v7.43.0) (2025-09-23)
+
+### Features
+
+- **(cli):** auto-detect and enable redis support in loop conversation memory ([b7b5514](https://github.com/juspay/neurolink/commit/b7b55149eb49a9f0ffa2a257c96d869b0da59eeb))
+
 ## [7.42.0](https://github.com/juspay/neurolink/compare/v7.41.4...v7.42.0) (2025-09-23)
 
 ### Features
