@@ -1,3 +1,16 @@
+## [7.49.0](https://github.com/juspay/neurolink/compare/v7.48.1...v7.49.0) (2025-10-07)
+
+### Features
+
+- **(cli):** added support for resuming a conversation ([b860d29](https://github.com/juspay/neurolink/commit/b860d2995a2c3fe29a39c750f152d9f32abb612f))
+- **(middleware):** implement guardrails pre-call filtering with demo and proof ([b99a7f1](https://github.com/juspay/neurolink/commit/b99a7f15e5972eec4bd5652792f56f192239fd8d))
+- **(multimodal):** add comprehensive CSV file support with auto-detection and analysis tools ([374b375](https://github.com/juspay/neurolink/commit/374b3750a996a4e2e466bc1af1d54c9aec7f3b8c))
+
+### Bug Fixes
+
+- **(azure):** add SDK parameter support for lighthouse tool events compatibility ([a3bca3b](https://github.com/juspay/neurolink/commit/a3bca3b27b5505919a403896ee1dc1fb55a1983f))
+- **(formatting):** fixed linting issues with docs ([a7d1aff](https://github.com/juspay/neurolink/commit/a7d1affa6d8d00fd2b7491e1643e86654b242a40))
+
 ## [7.48.1](https://github.com/juspay/neurolink/compare/v7.48.0...v7.48.1) (2025-10-02)
 
 ## [7.48.0](https://github.com/juspay/neurolink/compare/v7.47.3...v7.48.0) (2025-09-30)
