@@ -1,3 +1,9 @@
+## [7.50.0](https://github.com/juspay/neurolink/compare/v7.49.0...v7.50.0) (2025-10-08)
+
+### Features
+
+- **(observability):** add langfuse and telemetry support ([4172d28](https://github.com/juspay/neurolink/commit/4172d283ebce0c6dddae356d278eeceb42aa8464))
+
 ## [7.49.0](https://github.com/juspay/neurolink/compare/v7.48.1...v7.49.0) (2025-10-07)
 
 ### Features
