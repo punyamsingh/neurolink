@@ -1,3 +1,9 @@
+## [8.5.1](https://github.com/juspay/neurolink/compare/v8.5.0...v8.5.1) (2025-12-04)
+
+### Bug Fixes
+
+- **(vertex):** clarify schema+tools support for Gemini vs Claude models ([e7beae9](https://github.com/juspay/neurolink/commit/e7beae987cfe58664145b32c2ae12140a5257c0c))
+
 ## [8.5.0](https://github.com/juspay/neurolink/compare/v8.4.1...v8.5.0) (2025-12-04)
 
 ### Features
