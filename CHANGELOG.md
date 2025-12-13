@@ -1,3 +1,9 @@
+## [8.13.0](https://github.com/juspay/neurolink/compare/v8.12.0...v8.13.0) (2025-12-13)
+
+### Features
+
+- **(tts):** Implement TTSProcessor.synthesize() method ([d6f3567](https://github.com/juspay/neurolink/commit/d6f3567dda26191f0ca9fd82a8cd7ccff5c9f819))
+
 ## [8.12.0](https://github.com/juspay/neurolink/compare/v8.11.0...v8.12.0) (2025-12-13)
 
 ### Features
