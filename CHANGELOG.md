@@ -1,3 +1,9 @@
+## [8.15.0](https://github.com/juspay/neurolink/compare/v8.14.0...v8.15.0) (2025-12-14)
+
+### Features
+
+- **(tts):** Implement synthesize method in GoogleTTSHandler ([9262e37](https://github.com/juspay/neurolink/commit/9262e37a08ef856eb5d16fd65fa922bd700897cb))
+
 ## [8.14.0](https://github.com/juspay/neurolink/compare/v8.13.2...v8.14.0) (2025-12-14)
 
 ### Features
