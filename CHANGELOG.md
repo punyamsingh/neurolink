@@ -1,3 +1,9 @@
+## [8.14.0](https://github.com/juspay/neurolink/compare/v8.13.2...v8.14.0) (2025-12-14)
+
+### Features
+
+- **(tts):** Create GoogleTTSHandler skeleton structure ([60db6a8](https://github.com/juspay/neurolink/commit/60db6a813d350756dad9a7baeee3ff5ad35141e2))
+
 ## [8.13.2](https://github.com/juspay/neurolink/compare/v8.13.1...v8.13.2) (2025-12-14)
 
 ### Bug Fixes
