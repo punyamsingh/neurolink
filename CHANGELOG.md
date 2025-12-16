@@ -1,3 +1,9 @@
+## [8.16.0](https://github.com/juspay/neurolink/compare/v8.15.0...v8.16.0) (2025-12-16)
+
+### Features
+
+- **(tts):** Implement GoogleTTSHandler.getVoices() API ([15d39f7](https://github.com/juspay/neurolink/commit/15d39f7e6bfe093971bc822e8f4251b7e8711bb9))
+
 ## [8.15.0](https://github.com/juspay/neurolink/compare/v8.14.0...v8.15.0) (2025-12-14)
 
 ### Features
