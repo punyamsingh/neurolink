@@ -1,3 +1,9 @@
+## [8.22.0](https://github.com/juspay/neurolink/compare/v8.21.0...v8.22.0) (2025-12-23)
+
+### Features
+
+- **(ci):** Add ffmpeg installation and verification to CI/CD pipeline ([1b0d669](https://github.com/juspay/neurolink/commit/1b0d669e5ee3d33f58dcfe71ddcc9bb8faf5b892))
+
 ## [8.21.0](https://github.com/juspay/neurolink/compare/v8.20.1...v8.21.0) (2025-12-22)
 
 ### Features
