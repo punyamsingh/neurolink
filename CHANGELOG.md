@@ -1,3 +1,9 @@
+## [8.26.0](https://github.com/juspay/neurolink/compare/v8.25.0...v8.26.0) (2025-12-30)
+
+### Features
+
+- **(types):** Add video output types (VIDEO-GEN-001) ([1b1b5c2](https://github.com/juspay/neurolink/commit/1b1b5c23d0bdacb9d3120797b1f7984d7e0cc48c))
+
 ## [8.25.0](https://github.com/juspay/neurolink/compare/v8.24.0...v8.25.0) (2025-12-30)
 
 ### Features
