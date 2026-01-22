@@ -1,3 +1,9 @@
+## [8.37.0](https://github.com/juspay/neurolink/compare/v8.36.0...v8.37.0) (2026-01-22)
+
+### Features
+
+- **(security):** Implement token bucket rate limiter for URL downloads ([0e3e779](https://github.com/juspay/neurolink/commit/0e3e7797800360ab1672fcb8fbd87b1f794b6e1a))
+
 ## [8.36.0](https://github.com/juspay/neurolink/compare/v8.35.2...v8.36.0) (2026-01-22)
 
 ### Features
