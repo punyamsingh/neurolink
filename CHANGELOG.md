@@ -1,3 +1,9 @@
+## [8.40.1](https://github.com/juspay/neurolink/compare/v8.40.0...v8.40.1) (2026-01-28)
+
+### Bug Fixes
+
+- **(orchestration):** changed model identifiers in modelRouter to match new claude identifiers ([e5fb153](https://github.com/juspay/neurolink/commit/e5fb153edbeace4a8fd13d416811ed37c2ea0459))
+
 ## [8.40.0](https://github.com/juspay/neurolink/compare/v8.39.0...v8.40.0) (2026-01-28)
 
 ### Features
