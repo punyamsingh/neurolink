@@ -1,3 +1,9 @@
+## [9.5.0](https://github.com/juspay/neurolink/compare/v9.4.0...v9.5.0) (2026-02-12)
+
+### Features
+
+- **(landing):** add marketing landing page and fix docs-site icon rendering ([bf217da](https://github.com/juspay/neurolink/commit/bf217da0f1c4865f0c89d609c4ab1082d023af38))
+
 ## [9.4.0](https://github.com/juspay/neurolink/compare/v9.3.0...v9.4.0) (2026-02-09)
 
 ### Features
