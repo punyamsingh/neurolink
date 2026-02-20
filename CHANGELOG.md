@@ -1,3 +1,9 @@
+## [9.10.0](https://github.com/juspay/neurolink/compare/v9.9.0...v9.10.0) (2026-02-20)
+
+### Features
+
+- **(generateText):** add prepareStep and toolChoice passthrough support for multi-step agentic generation ([4cd340a](https://github.com/juspay/neurolink/commit/4cd340af7d39f72006d09fe86569232d751dcd8d))
+
 ## [9.9.0](https://github.com/juspay/neurolink/compare/v9.8.0...v9.9.0) (2026-02-17)
 
 ### Features
