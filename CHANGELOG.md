@@ -1,3 +1,9 @@
+## [9.11.0](https://github.com/juspay/neurolink/compare/v9.10.1...v9.11.0) (2026-02-22)
+
+### Features
+
+- **(core):** provider error standardization, abort hardening, session budget, and continuous test suites ([0ceb590](https://github.com/juspay/neurolink/commit/0ceb590dcad315d392f3e9563d0c5dc0c83cda00))
+
 ## [9.10.1](https://github.com/juspay/neurolink/compare/v9.10.0...v9.10.1) (2026-02-21)
 
 ### Bug Fixes
