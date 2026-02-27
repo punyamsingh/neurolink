@@ -1,3 +1,9 @@
+## [9.14.0](https://github.com/juspay/neurolink/compare/v9.13.0...v9.14.0) (2026-02-27)
+
+### Features
+
+- **(docs):** documentation site overhaul — MCP docs server, homepage redesign, and SEO improvements ([5b16ed4](https://github.com/juspay/neurolink/commit/5b16ed4d5455568a480aa0389ad934eed9d03360))
+
 ## [9.13.0](https://github.com/juspay/neurolink/compare/v9.12.3...v9.13.0) (2026-02-25)
 
 ### Features
