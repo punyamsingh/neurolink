@@ -1,3 +1,9 @@
+## [9.18.0](https://github.com/juspay/neurolink/compare/v9.17.2...v9.18.0) (2026-03-07)
+
+### Features
+
+- **(sdk):** add embed() and embedMany() support across providers and server ([17243ad](https://github.com/juspay/neurolink/commit/17243ada417a192caa6e555f92df23938ddca6aa))
+
 ## [9.17.2](https://github.com/juspay/neurolink/compare/v9.17.1...v9.17.2) (2026-03-07)
 
 ### Bug Fixes
