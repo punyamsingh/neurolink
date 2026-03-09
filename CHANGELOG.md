@@ -1,3 +1,9 @@
+## [9.20.0](https://github.com/juspay/neurolink/compare/v9.19.1...v9.20.0) (2026-03-09)
+
+### Features
+
+- **(landing):** redesign nervous system visualization with performance and mobile fixes ([a4c7e91](https://github.com/juspay/neurolink/commit/a4c7e91a22622b41821db09e17885a54b26c66aa))
+
 ## [9.19.1](https://github.com/juspay/neurolink/compare/v9.19.0...v9.19.1) (2026-03-07)
 
 ### Bug Fixes
