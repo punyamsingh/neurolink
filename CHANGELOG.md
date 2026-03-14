@@ -1,3 +1,9 @@
+## [9.24.0](https://github.com/juspay/neurolink/compare/v9.23.0...v9.24.0) (2026-03-14)
+
+### Features
+
+- **(ppt):** Implement CLI support for PPT Gen ([83e6847](https://github.com/juspay/neurolink/commit/83e684781b04562970bcd48f617d368d1c4db2ee))
+
 ## [9.23.0](https://github.com/juspay/neurolink/compare/v9.22.3...v9.23.0) (2026-03-14)
 
 ### Features
