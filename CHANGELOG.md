@@ -1,3 +1,9 @@
+## [9.46.0](https://github.com/juspay/neurolink/compare/v9.45.0...v9.46.0) (2026-04-04)
+
+### Features
+
+- **(image):** add extension whitelist validation utilities (IMG-021) ([1cfdf30](https://github.com/juspay/neurolink/commit/1cfdf30aeb57ea3566ad4c4837de6f27228514ae))
+
 ## [9.45.0](https://github.com/juspay/neurolink/compare/v9.44.1...v9.45.0) (2026-04-04)
 
 ### Features
