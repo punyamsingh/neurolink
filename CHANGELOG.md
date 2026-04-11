@@ -1,3 +1,9 @@
+## [9.51.2](https://github.com/juspay/neurolink/compare/v9.51.1...v9.51.2) (2026-04-11)
+
+### Bug Fixes
+
+- **(proxy):** full OAuth betas through proxy, explicit baseURL, and lower cooldown floor ([2014aee](https://github.com/juspay/neurolink/commit/2014aee8a3fc36dfdc474f59dc0cfdf9395cd140))
+
 ## [9.51.1](https://github.com/juspay/neurolink/compare/v9.51.0...v9.51.1) (2026-04-10)
 
 ### Bug Fixes
