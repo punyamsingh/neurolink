@@ -1,3 +1,9 @@
+## [9.54.5](https://github.com/juspay/neurolink/compare/v9.54.4...v9.54.5) (2026-04-15)
+
+### Bug Fixes
+
+- **(proxy):** eliminate fabricated 429 storm, harden launchd service lifecycle ([9ef0505](https://github.com/juspay/neurolink/commit/9ef0505af5db801bcadd1a2e47a0c0423957a3c4))
+
 ## [9.54.4](https://github.com/juspay/neurolink/compare/v9.54.3...v9.54.4) (2026-04-14)
 
 ## [9.54.3](https://github.com/juspay/neurolink/compare/v9.54.2...v9.54.3) (2026-04-13)
