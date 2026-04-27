@@ -1,3 +1,9 @@
+## [9.59.3](https://github.com/juspay/neurolink/compare/v9.59.2...v9.59.3) (2026-04-27)
+
+### Bug Fixes
+
+- **(observability):** enrich NoOutputGeneratedError sentinel chunk metadata + actually trigger the catch path the production bug needs ([6854af1](https://github.com/juspay/neurolink/commit/6854af103688dd20093bbfef15e2252b4b502b51))
+
 ## [9.59.2](https://github.com/juspay/neurolink/compare/v9.59.1...v9.59.2) (2026-04-26)
 
 ### Bug Fixes
