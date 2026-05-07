@@ -1,3 +1,9 @@
+## [9.61.2](https://github.com/juspay/neurolink/compare/v9.61.1...v9.61.2) (2026-05-07)
+
+### Bug Fixes
+
+- **(hitl):** prevent duplicate confirmation prompts on tool retry ([14e4890](https://github.com/juspay/neurolink/commit/14e4890d8613ae264f8c8bbd064f882ad4cc22f5))
+
 ## [9.61.1](https://github.com/juspay/neurolink/compare/v9.61.0...v9.61.1) (2026-05-04)
 
 ### Bug Fixes
