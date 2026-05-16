@@ -1,3 +1,9 @@
+## [9.64.0](https://github.com/juspay/neurolink/compare/v9.63.1...v9.64.0) (2026-05-16)
+
+### Features
+
+- **(providers):** replace @ai-sdk/google with native @google/genai + @anthropic-ai/vertex-sdk ([076b9f4](https://github.com/juspay/neurolink/commit/076b9f4c3fbe303bd77a52dff30b6758dfb7aa13))
+
 ## [9.63.1](https://github.com/juspay/neurolink/compare/v9.63.0...v9.63.1) (2026-05-14)
 
 ### Bug Fixes
