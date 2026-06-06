@@ -1,3 +1,9 @@
+## [9.68.6](https://github.com/juspay/neurolink/compare/v9.68.5...v9.68.6) (2026-06-06)
+
+### Bug Fixes
+
+- **(providers):** add default config methods to OpenAI-compat base ([cf99a1e](https://github.com/juspay/neurolink/commit/cf99a1e545b19211a9bfdc007a0577a876d14ebb))
+
 ## [9.68.5](https://github.com/juspay/neurolink/compare/v9.68.4...v9.68.5) (2026-06-06)
 
 ### Bug Fixes
