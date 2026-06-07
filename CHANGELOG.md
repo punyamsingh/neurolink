@@ -1,3 +1,9 @@
+## [9.69.1](https://github.com/juspay/neurolink/compare/v9.69.0...v9.69.1) (2026-06-07)
+
+### Bug Fixes
+
+- **(providers):** restore NVIDIA NIM extras passthrough + one-shot 400 retry ([50e2173](https://github.com/juspay/neurolink/commit/50e2173ed8a2b2eda75d45b715fb5b07c1b2fc37)), closes [#1058](https://github.com/juspay/neurolink/issues/1058) [#1073](https://github.com/juspay/neurolink/issues/1073)
+
 ## [9.69.0](https://github.com/juspay/neurolink/compare/v9.68.21...v9.69.0) (2026-06-07)
 
 ### Features
