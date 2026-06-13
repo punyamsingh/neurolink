@@ -1,3 +1,9 @@
+## [9.70.4](https://github.com/juspay/neurolink/compare/v9.70.3...v9.70.4) (2026-06-13)
+
+### Bug Fixes
+
+- **(structured):** recover the most-complete object + unwrap string-literal output ([72e6d96](https://github.com/juspay/neurolink/commit/72e6d965693ce89a7a84f2d89207d049493383f9))
+
 ## [9.70.3](https://github.com/juspay/neurolink/compare/v9.70.2...v9.70.3) (2026-06-13)
 
 ### Bug Fixes
