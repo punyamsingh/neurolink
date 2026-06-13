@@ -1,3 +1,9 @@
+## [9.70.7](https://github.com/juspay/neurolink/compare/v9.70.6...v9.70.7) (2026-06-13)
+
+### Bug Fixes
+
+- **(coerce):** unwrap nested stringified JSON objects to satisfy schema ([2f0b856](https://github.com/juspay/neurolink/commit/2f0b8569d0b1be12934745557828e36dc5bf9cd5))
+
 ## [9.70.6](https://github.com/juspay/neurolink/compare/v9.70.5...v9.70.6) (2026-06-13)
 
 ### Bug Fixes
