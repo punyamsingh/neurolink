@@ -1,3 +1,9 @@
+## [9.71.0](https://github.com/juspay/neurolink/compare/v9.70.7...v9.71.0) (2026-06-16)
+
+### Features
+
+- **(observability):** emit Langfuse spans for the native Vertex provider path ([a90f3ec](https://github.com/juspay/neurolink/commit/a90f3ec8664ef730425a15d10bb19eb1f722480f))
+
 ## [9.70.7](https://github.com/juspay/neurolink/compare/v9.70.6...v9.70.7) (2026-06-13)
 
 ### Bug Fixes
