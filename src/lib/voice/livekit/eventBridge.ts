@@ -228,7 +228,7 @@ export async function attachEventBridge(
     const json = JSON.stringify(envelope);
     const bytes = encoder.encode(json);
     const onError = (transport: string) => (error: unknown) => {
-      logger.warn("[LiveKitEventBridge] Failed to publish event", {
+      logger.warn("voice.bridge.publishFailed", {
         transport,
         type: event.type,
         error: error instanceof Error ? error.message : String(error),
@@ -351,7 +351,7 @@ export async function attachEventBridge(
     try {
       parsed = JSON.parse(decoder.decode(payload));
     } catch (error) {
-      logger.warn("[LiveKitEventBridge] Dropping malformed control message", {
+      logger.warn("voice.bridge.controlMalformed", {
         error: error instanceof Error ? error.message : String(error),
       });
       return;
@@ -384,7 +384,7 @@ export async function attachEventBridge(
 
   publish({ type: "status", data: { state: "listening" } });
 
-  logger.info("[LiveKitEventBridge] Attached", {
+  logger.info("voice.bridge.attached", {
     eventsTopic,
     controlTopic,
     filtered: include !== undefined,
@@ -406,7 +406,7 @@ export async function attachEventBridge(
       emitter.off(STREAM_END_EVENT, onStreamComplete);
       emitter.off(STREAM_ERROR_EVENT, onStreamError);
       room.off(RoomEvent.DataReceived, onData);
-      logger.info("[LiveKitEventBridge] Disposed");
+      logger.info("voice.bridge.disposed", {});
     },
   };
 }

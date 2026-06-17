@@ -86,7 +86,7 @@ export function createVoiceBrain(
 
     for await (const chunk of result.stream) {
       if (signal?.aborted) {
-        logger.debug("[LiveKitBrain] Turn aborted mid-stream; stopping");
+        logger.debug("voice.brain.turnAborted", { reason: "signal-aborted" });
         return;
       }
       const delta = extractTextDelta(chunk);

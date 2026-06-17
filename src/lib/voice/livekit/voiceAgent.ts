@@ -241,11 +241,21 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
   async function entry(ctx: JobContext): Promise<void> {
     const entryStartedAt = Date.now();
     await ctx.connect();
-    logger.debug(
-      `[LiveKitVoiceAgent] Joined room "${ctx.room.name}" in ${Date.now() - entryStartedAt}ms`,
-    );
-    // When the user actually stopped speaking (VAD), used to measure how long
-    // the agent waited after speech before committing the turn to the LLM.
+    logger.debug("voice.agent.roomJoined", {
+      room: ctx.room.name,
+      ms: Date.now() - entryStartedAt,
+    });
+
+    const { RoomEvent } = await import("@livekit/rtc-node");
+    ctx.room.on(RoomEvent.ParticipantDisconnected, () => {
+      if (ctx.room.remoteParticipants.size === 0) {
+        logger.info("voice.agent.participantLeft", {
+          room: ctx.room.name,
+          action: "shutdown",
+        });
+        ctx.shutdown("participant left");
+      }
+    });
     let userStoppedSpeakingAt: number | undefined;
 
     const neurolink = await config.createNeuroLink();
@@ -307,12 +317,6 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
         final: false,
       });
     }
-
-    /**
-     * Lock the user bubble at turn-end and reset the buffer for the next turn.
-     * `replacesPrevious` tells the client this committed turn absorbed a prior
-     * interrupted turn, so it should remove the orphaned previous user bubble.
-     */
     function commitUserTranscript(
       finalText: string,
       replacesPrevious = false,
@@ -346,9 +350,9 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
 
         commitUserTranscript(promptText, hadPrefix);
         if (userStoppedSpeakingAt !== undefined) {
-          logger.debug(
-            `[LiveKitVoiceAgent] Endpointing waited ${Date.now() - userStoppedSpeakingAt}ms before sending turn to LLM`,
-          );
+          logger.debug("voice.agent.endpointingWaited", {
+            ms: Date.now() - userStoppedSpeakingAt,
+          });
         }
         return brainTurnStream(brain, promptText, conversationId, () => {
           // Interrupted before producing any reply → carry this turn's text
@@ -379,9 +383,7 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
     };
     if (eouTurnDetector !== undefined) {
       turnHandling.turnDetection = eouTurnDetector;
-      logger.info(
-        "[LiveKitVoiceAgent] Semantic end-of-utterance turn detection enabled (English)",
-      );
+      logger.info("voice.agent.eouEnabled", { language: "english" });
     } else if (config.turn?.mode) {
       turnHandling.turnDetection = config.turn.mode;
     }
@@ -401,21 +403,12 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
       tts,
       llm: new PlaceholderLLM(),
       turnHandling,
-      // Do NOT speculatively call the LLM on preflight transcripts before the
-      // turn ends — with NeuroLink as the brain each call is a real LLM request,
-      // and it makes the agent feel like it responds while you're still talking.
       preemptiveGeneration: false,
     });
     const agent = new NeuroLinkVoiceAgent({
       instructions: config.systemPrompt ?? "",
     });
 
-    // Inactivity watchdog: shut the per-call Job down after a stretch with no
-    // user or agent activity (mirrors Clairvoyance). On timeout `ctx.shutdown`
-    // runs the shutdown callbacks (disposing the bridge) and the Job process
-    // exits — freeing its RAM and the EOU model — while the browser observes a
-    // room disconnect. Reset on every interaction below. Configure via
-    // VOICE_INACTIVITY_TIMEOUT_MS (default 10 min); <= 0 disables the watchdog.
     const inactivityTimeoutMs = Number(
       process.env.VOICE_INACTIVITY_TIMEOUT_MS ?? 600_000,
     );
@@ -436,11 +429,11 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
       clearInactivityTimer();
       inactivityTimer = setTimeout(() => {
         inactivityFired = true;
-        logger.info(
-          `[LiveKitVoiceAgent] Inactivity timeout (${Math.round(
-            inactivityTimeoutMs / 1000,
-          )}s) reached — shutting down job for room "${ctx.room.name}"`,
-        );
+        logger.info("voice.agent.inactivityTimeout", {
+          room: ctx.room.name,
+          timeoutMs: inactivityTimeoutMs,
+          action: "shutdown",
+        });
         ctx.shutdown("inactivity timeout");
       }, inactivityTimeoutMs);
       // The watchdog must not, by itself, keep the event loop alive.
@@ -450,8 +443,23 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
       clearInactivityTimer();
     });
 
-    // Track when the user actually stops speaking (VAD) so endpointing latency
-    // can be measured, and reset the inactivity watchdog on user activity.
+    if (process.env.LK_REALTIME_CONNECT_MODE === "true") {
+      ctx.addShutdownCallback(async () => {
+        const parentPid = process.ppid;
+
+        setTimeout(() => {
+          try {
+            if (typeof parentPid === "number" && parentPid > 1) {
+              process.kill(parentPid, "SIGTERM");
+            }
+          } catch {
+            // Parent already gone — fall through to the hard exit below.
+          }
+          process.exit(0);
+        }, 500).unref?.();
+      });
+    }
+
     session.on(voice.AgentSessionEventTypes.UserStateChanged, (ev) => {
       noteActivity();
       if (ev.oldState === "speaking" && ev.newState !== "speaking") {
@@ -459,9 +467,6 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
       }
     });
 
-    // Reset the inactivity watchdog on any agent speech/processing and on every
-    // committed conversation item (user turn or agent reply), so the timeout
-    // only fires during a genuine lull in the conversation.
     session.on(voice.AgentSessionEventTypes.AgentStateChanged, () => {
       noteActivity();
     });
@@ -469,19 +474,13 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
       noteActivity();
     });
 
-    // Forward user STT transcripts to the data-channel bridge as a single
-    // live-updating bubble. `UserInputTranscribed` fires `isFinal: true` per
-    // finalized SEGMENT (several per turn), so we never forward those as the
-    // turn-final; `emitUserTranscriptSegment` accumulates them into the per-turn
-    // buffer and emits `final: false`. The lone `final: true` is sent from
-    // `llmNode` at the real turn boundary.
     if (transcriptEventsEnabled) {
       session.on(voice.AgentSessionEventTypes.UserInputTranscribed, (ev) => {
         emitUserTranscriptSegment(ev.transcript, ev.isFinal);
       });
     }
 
-    logger.info("[LiveKitVoiceAgent] Session starting", {
+    logger.info("voice.agent.sessionStarting", {
       room: ctx.room.name,
       provider,
       model,
@@ -489,13 +488,20 @@ export function defineVoiceAgent(config: LiveKitVoiceAgentConfig): JobAgent {
 
     await session.start({ agent, room: ctx.room });
 
-    // Start the inactivity countdown now that the session is live; every
-    // interaction handler above re-arms it.
+    if (config.greeting !== undefined && config.greeting.trim().length > 0) {
+      const greetingStream = brainTurnStream(
+        brain,
+        config.greeting,
+        conversationId,
+      );
+      session.say(greetingStream, {
+        addToChatCtx: true,
+        allowInterruptions: true,
+      });
+    }
+
     noteActivity();
 
-    // Data-channel event bridge: forward NeuroLink events (text, tool calls,
-    // results, HITL prompts, status) to the browser, and accept HITL responses
-    // back. Only when enabled and the instance exposes its event emitter.
     if (config.events?.enabled === true && neurolink.getEventEmitter) {
       const bridge = await attachEventBridge({
         room: ctx.room,

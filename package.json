@@ -387,6 +387,7 @@
     "@livekit/agents-plugin-cartesia": "^1.4.5",
     "@livekit/agents-plugin-deepgram": "^1.4.5",
     "@livekit/agents-plugin-elevenlabs": "^1.4.5",
+    "@livekit/agents-plugin-google": "^1.4.5",
     "@livekit/agents-plugin-livekit": "^1.4.5",
     "@livekit/agents-plugin-silero": "^1.4.5",
     "@livekit/agents-plugin-soniox": "^1.4.5",

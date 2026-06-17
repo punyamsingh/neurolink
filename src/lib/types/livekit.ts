@@ -170,6 +170,7 @@ export type LiveKitVoiceAgentConfig = {
   conversationIdPrefix?: string;
   /** Optional user id recorded alongside memory. */
   userId?: string;
+  greeting?: string;
   /** Silero VAD tuning (stricter = ignores background noise). */
   vad?: LiveKitVadConfig;
   /** Turn-detection tuning (VAD vs STT endpointing, delays). */
@@ -402,4 +403,154 @@ export type LiveKitEventBridgeParams = {
 export type LiveKitEventBridgeHandle = {
   /** Remove all listeners and stop publishing. Idempotent. */
   dispose: () => void;
+};
+
+/**
+ * Credentials for LiveKit server-side REST calls (room create, agent dispatch).
+ * `url` accepts `ws(s)://` or `http(s)://`; helpers convert it to https.
+ */
+export type LiveKitServerCredentials = {
+  url: string;
+  apiKey: string;
+  apiSecret: string;
+};
+
+/**
+ * Realtime voice configuration resolved from the environment.
+ *
+ * In speech-to-speech mode one realtime model (Gemini Live on Vertex) does STT,
+ * reasoning, TTS, and turn detection — so there is no separate STT/TTS/VAD/EOU
+ * config. `resolveRealtimeVoiceConfig` fills every field from `process.env`
+ * (with defaults); `RealtimeVoiceAgentConfig` lets a caller override any of them.
+ */
+export type RealtimeVoiceConfig = {
+  /** Vertex project id (from VERTEX_PROJECT / GOOGLE_AUTH_* / GOOGLE_CLOUD_PROJECT_ID). */
+  project: string | undefined;
+  /** Vertex location; native-audio Live is served on `global`, not regionally. */
+  location: string;
+  /** Realtime model id (e.g. "gemini-live-2.5-flash"). */
+  model: string;
+  /** Optional Gemini voice name; omit for the plugin default. */
+  voice: string | undefined;
+  /** Response modality: "AUDIO" (native S2S) or "TEXT" (half-cascade). */
+  responseModality: string;
+  /** System prompt / instructions for the agent. */
+  systemPrompt: string;
+  /** Opening line the agent speaks on connect ("" disables). */
+  greeting: string;
+  /** Whether to bridge Lighthouse MCP tools as Gemini function tools. */
+  toolsEnabled: boolean;
+  /** Full URL of the MCP server the tools are bridged from. */
+  mcpUrl: string;
+  /** Grace period after the caller leaves before the job shuts down (ms). */
+  emptyRoomGraceMs: number;
+  /** Deadline for a participant to join before the job shuts down (ms). */
+  joinDeadlineMs: number;
+  /** How long a HITL confirmation waits before being treated as a decline (ms). */
+  hitlTimeoutMs: number;
+  /** Interval for the RSS/heap metrics log (ms). */
+  metricsIntervalMs: number;
+};
+
+/** A single log record handed to a `RealtimeVoiceAgentConfig.onLog` sink. */
+export type RealtimeVoiceLogEntry = {
+  level: "debug" | "info" | "warn" | "error";
+  message: string;
+  timestamp: number;
+  data?: unknown;
+};
+
+export type RealtimeVoiceLogContext = {
+  room: string;
+};
+
+/**
+ * Options for `defineRealtimeVoiceAgent`. Every field is optional: omitted
+ * values fall back to `resolveRealtimeVoiceConfig()` (i.e. the environment), so
+ * a caller can use `defineRealtimeVoiceAgent()` with no arguments and configure
+ * everything via env.
+ */
+export type RealtimeVoiceAgentConfig = {
+  project?: string;
+  location?: string;
+  model?: string;
+  voice?: string;
+  responseModality?: string;
+  systemPrompt?: string;
+  greeting?: string;
+  /** MCP tool bridging overrides. */
+  tools?: {
+    enabled?: boolean;
+    mcpUrl?: string;
+  };
+  /** Data-channel topic for outbound events (default "ai-events"). */
+  eventsTopic?: string;
+  /** Data-channel topic for inbound control messages (default "ai-control"). */
+  controlTopic?: string;
+  /**
+   * Optional sink for the agent's own logs. When set, the realtime agent wires
+   * NeuroLink's logger to this callback for the duration of the call, so a host
+   * can forward worker logs into its logging pipeline. Each record is tagged
+   * with per-call context (the room name). Subject to the logger's level gate:
+   * without debug mode only `error` records are emitted (set `NEUROLINK_DEBUG`).
+   */
+  onLog?: (entry: RealtimeVoiceLogEntry, ctx: RealtimeVoiceLogContext) => void;
+};
+
+/** Auth token + base64 MCP execution context decoded from a room's metadata. */
+export type LiveKitRoomCallContext = {
+  /** Lighthouse access JWT used as `x-auth-token` to the MCP server. */
+  authToken: string;
+  /** base64(JSON) MCP execution context used as `x-context` (or "" if absent). */
+  xContext: string;
+};
+
+/** Publishes a single voice event envelope onto the room data channel. */
+export type RealtimeEventPublisher = (
+  type: LiveKitVoiceEventType,
+  data: Record<string, unknown>,
+) => void;
+
+/** Requests a HITL confirmation and resolves to the user's decision. */
+export type RealtimeConfirmationRequester = (
+  toolName: string,
+  args: Record<string, unknown>,
+) => Promise<boolean>;
+
+/** Handle returned by `attachRealtimeEventBridge`. */
+export type RealtimeEventBridgeHandle = {
+  /** Publish an outbound event to the browser (data packet or text stream). */
+  publishEvent: RealtimeEventPublisher;
+  /** Open a HITL prompt and await the browser's decision (timeout = decline). */
+  requestConfirmation: RealtimeConfirmationRequester;
+  /** Remove the control-channel listener and clear pending confirmations. */
+  dispose: () => void;
+};
+
+/** Inputs to `attachRealtimeEventBridge`. */
+export type RealtimeEventBridgeParams = {
+  /** The LiveKit room for this call (from the job context). */
+  room: LiveKitBridgeRoom;
+  /** HITL confirmation timeout in ms before a request is auto-declined. */
+  hitlTimeoutMs?: number;
+  /** Outbound events topic (default "ai-events"). */
+  eventsTopic?: string;
+  /** Inbound control topic (default "ai-control"). */
+  controlTopic?: string;
+  /** Payloads larger than this are sent via the chunked text stream (default 12000). */
+  maxInlineBytes?: number;
+};
+
+/** Inputs to `buildRealtimeMcpTools`. */
+export type BuildRealtimeMcpToolsParams = {
+  /** Full URL of the MCP server (e.g. ".../ai/mcp/v2"). */
+  mcpUrl: string;
+  /** Lighthouse access JWT forwarded as `x-auth-token`. */
+  authToken: string;
+  /** base64(JSON) execution context forwarded as `x-context`. */
+  xContext: string;
+  /** Publishes tool start/result events to the browser. */
+  publishEvent: RealtimeEventPublisher;
+  /** Opens a HITL confirmation for destructive tools and awaits the decision. */
+  requestConfirmation: RealtimeConfirmationRequester;
 };

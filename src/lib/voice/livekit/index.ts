@@ -9,8 +9,27 @@
  */
 
 export { createVoiceBrain } from "./brain.js";
-export { resolveLiveKitServerConfig, resolveBrainDefaults } from "./config.js";
+export {
+  resolveLiveKitServerConfig,
+  resolveBrainDefaults,
+  resolveRealtimeVoiceConfig,
+} from "./config.js";
 export { attachEventBridge } from "./eventBridge.js";
+export { attachRealtimeEventBridge } from "./realtimeEventBridge.js";
 export { mintJoinToken } from "./tokens.js";
+export { createVoiceRoom, dispatchVoiceAgent } from "./roomDispatch.js";
 export { defineVoiceAgent } from "./voiceAgent.js";
-export { startVoiceAgentWorker } from "./voiceAgentWorker.js";
+export { defineRealtimeVoiceAgent } from "./realtimeVoiceAgent.js";
+export {
+  startVoiceAgentWorker,
+  startRealtimeVoiceAgentWorker,
+  installVoiceWorkerProcessGuards,
+} from "./voiceAgentWorker.js";
+export { ensureVertexAdc, clearGeminiApiKeyEnv } from "./vertexAuth.js";
+export { readCallContextFromRoom } from "./roomContext.js";
+export {
+  sanitizeSchema,
+  sanitizeToolParameters,
+  findSchemaIssue,
+} from "./schemaSanitizer.js";
+export { buildRealtimeMcpTools, mcpResultToText } from "./realtimeMcpTools.js";

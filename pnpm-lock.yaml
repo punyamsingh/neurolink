@@ -435,6 +435,9 @@ importers:
       '@livekit/agents-plugin-elevenlabs':
         specifier: ^1.4.5
         version: 1.4.5(@livekit/agents@1.4.5(@livekit/rtc-node@0.13.29)(typescript@5.9.3)(zod@4.3.6))(@livekit/rtc-node@0.13.29)
+      '@livekit/agents-plugin-google':
+        specifier: ^1.4.5
+        version: 1.4.6(@livekit/agents@1.4.5(@livekit/rtc-node@0.13.29)(typescript@5.9.3)(zod@4.3.6))(@livekit/rtc-node@0.13.29)(@modelcontextprotocol/sdk@1.28.0(zod@4.3.6))(ws@8.21.0)(zod@4.3.6)
       '@livekit/agents-plugin-livekit':
         specifier: ^1.4.5
         version: 1.4.5(@livekit/agents@1.4.5(@livekit/rtc-node@0.13.29)(typescript@5.9.3)(zod@4.3.6))
@@ -2050,6 +2053,12 @@ packages:
     resolution: {integrity: sha512-cUHcyrTaDi25ena5AwVDlNo9V75rA0mcCVu5T9BT0a2USHKHmjiB1wEpxR7/tlEu8U9QbkwEVBaeV7xiA4t4+A==}
     peerDependencies:
       '@livekit/agents': 1.4.5
+      '@livekit/rtc-node': ^0.13.29
+
+  '@livekit/agents-plugin-google@1.4.6':
+    resolution: {integrity: sha512-XFp8GNMseH1Qkq8RZ3gY5Dsuj/YsttHJF62HaAha42IP9d37C3IEpw8jKrDppNyZNJfOneOFkgjgfYVRd0wVYg==}
+    peerDependencies:
+      '@livekit/agents': 1.4.6
       '@livekit/rtc-node': ^0.13.29
 
   '@livekit/agents-plugin-livekit@1.4.5':
@@ -10116,6 +10125,20 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@google/genai@1.52.0(@modelcontextprotocol/sdk@1.28.0(zod@4.3.6))':
+    dependencies:
+      google-auth-library: 10.7.0
+      p-retry: 4.6.2
+      protobufjs: 7.6.3
+      ws: 8.21.0
+    optionalDependencies:
+      '@modelcontextprotocol/sdk': 1.28.0(zod@4.3.6)
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    optional: true
+
   '@google/genai@1.52.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))':
     dependencies:
       google-auth-library: 10.7.0
@@ -10756,6 +10779,25 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+    optional: true
+
+  '@livekit/agents-plugin-google@1.4.6(@livekit/agents@1.4.5(@livekit/rtc-node@0.13.29)(typescript@5.9.3)(zod@4.3.6))(@livekit/rtc-node@0.13.29)(@modelcontextprotocol/sdk@1.28.0(zod@4.3.6))(ws@8.21.0)(zod@4.3.6)':
+    dependencies:
+      '@google/genai': 1.52.0(@modelcontextprotocol/sdk@1.28.0(zod@4.3.6))
+      '@livekit/agents': 1.4.5(@livekit/rtc-node@0.13.29)(typescript@5.9.3)(zod@4.3.6)
+      '@livekit/mutex': 1.1.1
+      '@livekit/rtc-node': 0.13.29
+      '@types/json-schema': 7.0.15
+      google-auth-library: 10.7.0
+      json-schema: 0.4.0
+      openai: 6.42.0(ws@8.21.0)(zod@4.3.6)
+    transitivePeerDependencies:
+      - '@modelcontextprotocol/sdk'
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+      - ws
+      - zod
     optional: true
 
   '@livekit/agents-plugin-livekit@1.4.5(@livekit/agents@1.4.5(@livekit/rtc-node@0.13.29)(typescript@5.9.3)(zod@4.3.6))':
