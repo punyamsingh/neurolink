@@ -1,3 +1,13 @@
+## [9.74.0](https://github.com/juspay/neurolink/compare/v9.73.0...v9.74.0) (2026-06-20)
+
+### Features
+
+- **(tool-routing):** apply routing in generate(), add decision telemetry, routing cache + session stickiness ([a1e0f81](https://github.com/juspay/neurolink/commit/a1e0f81ef450bfb3e3ec974884570e3a76bc62b2))
+
+### Bug Fixes
+
+- **(ci):** cap Yama ai.maxTokens to 16000 so large PRs fit the model window ([3118149](https://github.com/juspay/neurolink/commit/31181493c7a1d35e2c003793a27880bef8c83a60)), closes [#1107](https://github.com/juspay/neurolink/issues/1107) [#1108](https://github.com/juspay/neurolink/issues/1108)
+
 ## [9.73.0](https://github.com/juspay/neurolink/compare/v9.72.0...v9.73.0) (2026-06-18)
 
 ### Features
