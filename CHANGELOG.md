@@ -1,3 +1,9 @@
+## [9.79.0](https://github.com/juspay/neurolink/compare/v9.78.0...v9.79.0) (2026-06-23)
+
+### Features
+
+- **(tools):** emit per-invocation executionId on tool start/end events ([6b142e4](https://github.com/juspay/neurolink/commit/6b142e49433e59698d6a39733d4abfcebf0cdfd5))
+
 ## [9.78.0](https://github.com/juspay/neurolink/compare/v9.77.0...v9.78.0) (2026-06-20)
 
 ### Features
