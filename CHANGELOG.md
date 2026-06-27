@@ -1,3 +1,9 @@
+## [9.79.2](https://github.com/juspay/neurolink/compare/v9.79.1...v9.79.2) (2026-06-27)
+
+### Bug Fixes
+
+- **(anthropic):** Curator/Tara reliability across the OAuth proxy, provider, and processors ([0228bf0](https://github.com/juspay/neurolink/commit/0228bf0cf2e1f48e033f052ed4ebcf6fc4e162cf))
+
 ## [9.79.1](https://github.com/juspay/neurolink/compare/v9.79.0...v9.79.1) (2026-06-23)
 
 ### Bug Fixes
