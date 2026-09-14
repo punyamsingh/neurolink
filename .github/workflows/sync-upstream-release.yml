@@ -1,0 +1,64 @@
+name: Sync Upstream Release
+
+# Mirrors the parent repo's (juspay/neurolink) `release` branch onto this
+# fork's `release` branch so releases stay in sync automatically — no manual
+# syncing required.
+#
+# Direction: juspay/neurolink@release  ->  this fork@release  (fast-forward or force mirror)
+#
+# Note: pushes made with the default GITHUB_TOKEN do NOT trigger other
+# workflows, so mirroring will NOT re-fire release.yml / re-publish to npm.
+
+on:
+  schedule:
+    # Every hour, on the hour (UTC). Adjust cadence as needed.
+    - cron: "0 * * * *"
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream-release
+  cancel-in-progress: false
+
+env:
+  UPSTREAM_REPO: https://github.com/juspay/neurolink.git
+  BRANCH: release
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add upstream and fetch release branch
+        run: |
+          git remote add upstream "$UPSTREAM_REPO"
+          git fetch upstream "$BRANCH" --tags
+
+      - name: Compare with fork release branch
+        id: compare
+        run: |
+          upstream_sha=$(git rev-parse "upstream/$BRANCH")
+          fork_sha=$(git rev-parse "origin/$BRANCH" 2>/dev/null || echo "")
+          echo "upstream=$upstream_sha" >> "$GITHUB_OUTPUT"
+          echo "fork=$fork_sha" >> "$GITHUB_OUTPUT"
+          if [ "$upstream_sha" = "$fork_sha" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "✅ Fork's $BRANCH already matches upstream ($upstream_sha). Nothing to do."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "🔄 Upstream $BRANCH ($upstream_sha) differs from fork ($fork_sha). Syncing..."
+          fi
+
+      - name: Mirror upstream release onto fork
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          # Force-mirror upstream/release onto this fork's release branch.
+          git push origin "refs/remotes/upstream/$BRANCH:refs/heads/$BRANCH" --force
+          echo "✅ Synced fork's $BRANCH to upstream ${{ steps.compare.outputs.upstream }}"
